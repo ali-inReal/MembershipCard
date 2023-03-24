@@ -1,33 +1,25 @@
 import { extend } from '@react-three/fiber'
 import * as THREE from 'three'
-import { TextureLoader } from 'three/src/loaders/TextureLoader'
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
 import React, { useRef } from 'react'
 import { useTexture } from '@react-three/drei'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
-import multi from "./../../assets/p.jpg"
 import { useState, useEffect } from 'react'
-import { useLoader } from '@react-three/fiber'
-import { MeshStandardMaterial } from 'three'
-import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry"
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
-import fo from "./../../assets/Roboto_Regular.typeface.json"
+import roboto from "./../../assets/Roboto_Regular.typeface.json"
+extend({TextGeometry})
 export function Card2(props) {
     const group = useRef()
     useFrame((state, delta) => (group.current.rotation.y += delta / 3))
-    //   useEffect(
-    //     ()=>{
-    //         group.current.rotation.y += Math.PI/2
-    //     }
-    //   )
-    const { nodes, materials, animations } = useGLTF('/CARD 3.glb')
-    const { actions } = useAnimations(animations, group)
+    const { nodes, materials} = useGLTF('/CARD 3.glb')
+    
     const [video] = useState(() => Object.assign(document.createElement('video'), { src: '/text.mp4', crossOrigin: 'Anonymous', loop: true, muted: true }))
     useEffect(() => void video.play(), [video])
 
     const profileImage = useTexture(props.profileImage)
-    const font = new FontLoader().parse(fo)
-    return (//1, -0.18, 1.43
+    const font = new FontLoader().parse(roboto)
+    return (
         <group scale={1.5} ref={group} dispose={null}>
             <group name="final_for_render_">
                 <group name="base_parent_" position={[0, -0.09, 0]} rotation={[Math.PI / 2, 0, 0]} scale={0.73}>
