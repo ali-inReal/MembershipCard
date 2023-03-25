@@ -5,7 +5,7 @@ import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { Card } from "./Card/Card";
 
-export const MembershipCard = ({width="400px",height="400px",profileImage,memberRank,joinDate,memberName,textColor,bodyColor,memberId,location,actOfKindness,rotation,showBackSide,backgroundVideo,rankColor}) => {
+export const MembershipCard = ({width="400px",height="400px",profileImage,memberRank,joinDate,memberName,textColor,bodyColor,memberId,location,actOfKindness,rotation,showBackSide,backgroundVideo,rankColor,QRcode}) => {
   
   const [numLights] = useState(6);
   const radius = 30;
@@ -42,7 +42,7 @@ export const MembershipCard = ({width="400px",height="400px",profileImage,member
           <pointLight key={i} position={position} />
         ))}
         
-        <Card textColor={textColor} rotation={rotation} rankColor={rankColor} backgroundVideo={backgroundVideo} showBackSide={showBackSide}  bodyColor={bodyColor} joinDate={joinDate} memberName={memberName} location={location} memberId={memberId} memberRank={memberRank} profileImage={profileImage} actOfKindness={actOfKindness} />
+        <Card QRcode={QRcode} textColor={textColor} rotation={rotation} rankColor={rankColor} backgroundVideo={backgroundVideo} showBackSide={showBackSide}  bodyColor={bodyColor} joinDate={joinDate} memberName={memberName} location={location} memberId={memberId} memberRank={memberRank} profileImage={profileImage} actOfKindness={actOfKindness} />
       </Canvas>
      
       </div>
