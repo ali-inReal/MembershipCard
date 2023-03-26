@@ -1,10 +1,10 @@
 import React from 'react'
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import * as THREE from "three"
 
-export const CardBackground = ({bodyGeometry,bodyMaterial,backgroundVideo}) => {
-    
-    
+export const CardBackground = ({ bodyGeometry, bodyMaterial, backgroundVideo }) => {
+
+
     const [video] = useState(() => Object.assign(document.createElement('video'), { src: backgroundVideo, crossOrigin: 'Anonymous', loop: true, muted: true }))
     useEffect(() => void video.play(), [video])
     return (

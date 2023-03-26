@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Text = ({ font,textColor, textMaterial,memberRank,memberId,joinDate, memberName, location, actOfKindness }) => {
+export const Text = ({ font, textColor, textMaterial, memberRank, memberId, joinDate, memberName, location, actOfKindness }) => {
 
 
 
@@ -27,7 +27,7 @@ export const Text = ({ font,textColor, textMaterial,memberRank,memberId,joinDate
             <mesh name="forwardText4" rotation={[4.6, 0, 0]} material={textMaterial} position={[-1.03, 0.04, 1.77]}  >
                 <textGeometry args={[actOfKindness, { font, size: 0.1, height: 0.04, bewelThickness: 0.015, bewelSize: 0.003 }]} />
             </mesh>
-          
+
         </>
     )
 }
