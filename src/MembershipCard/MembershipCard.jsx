@@ -42,12 +42,7 @@ export const MembershipCard = ({width="400px",height="400px",profileImage,member
         {positions1.map((position, i) => (
           <directionalLight key={i} position={position} />
         ))}
-        
-        {/* <Card QRcode={QRcode} textColor={textColor} rotation={rotation} rankColor={rankColor} backgroundVideo={backgroundVideo} showBackSide={showBackSide}  bodyColor={bodyColor} joinDate={joinDate} memberName={memberName} location={location} memberId={memberId} memberRank={memberRank} profileImage={profileImage} actOfKindness={actOfKindness} /> */}
-        <Suspense fallback={<Card QRcode={QRcode} textColor={textColor} rotation={rotation} rankColor={rankColor} backgroundVideo={backgroundVideo} showBackSide={showBackSide}  bodyColor={bodyColor} joinDate={joinDate} memberName={memberName} location={location} memberId={memberId} memberRank={memberRank} profileImage={profileImage} actOfKindness={actOfKindness} />}>
-        <Card QRcode={QRcode} textColor={textColor} rotation={rotation} rankColor={rankColor} backgroundVideo={backgroundVideo} showBackSide={showBackSide}  bodyColor={bodyColor} joinDate={joinDate} memberName={memberName} location={location} memberId={memberId} memberRank={memberRank} profileImage={profileImage} actOfKindness={actOfKindness} />
-        </Suspense>
-        
+        <Card QRcode={QRcode} textColor={textColor} rotation={rotation} rankColor={rankColor} backgroundVideo={backgroundVideo} showBackSide={showBackSide}  bodyColor={bodyColor} joinDate={joinDate} memberName={memberName} location={location} memberId={memberId} memberRank={memberRank} profileImage={profileImage} actOfKindness={actOfKindness} />   
       </Canvas>
       </Suspense>
       </div>

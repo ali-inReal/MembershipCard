@@ -9,6 +9,7 @@ import roboto from "../../assets/Roboto_Regular.typeface.json"
 import Arrow from "./CardComponents/Arrow"
 import { Text } from './CardComponents/Text'
 import { CardBackground } from './CardComponents/CardBackground'
+import model from "./../../assets/compressed.glb"
 extend({ TextGeometry })
 export const Card = ({ QRcode, profileImage, memberRank, joinDate, memberName, textColor, bodyColor, memberId, location, actOfKindness, rotation, showBackSide, backgroundVideo, rankColor }) => {
 
@@ -17,13 +18,13 @@ export const Card = ({ QRcode, profileImage, memberRank, joinDate, memberName, t
         group.current.rotation.y += delta / 3
         
     }): showBackSide ? group.current.rotation.y = Math.PI : "";
-    const { nodes, materials } = useGLTF('/compressed.glb')
+    const { nodes, materials } = useGLTF(model)
 
     
     const colorMap = useTexture(QRcode)
     const profile = useTexture(profileImage)
     const font = new FontLoader().parse(roboto)
-    console.log(materials["Material.007"])
+    
 
     return (
         <group scale={1.7} ref={group} dispose={null}>
@@ -53,5 +54,5 @@ export const Card = ({ QRcode, profileImage, memberRank, joinDate, memberName, t
         </group>
     )
 }
-useGLTF.preload('/compressed.glb')
+useGLTF.preload(model)
 

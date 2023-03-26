@@ -1,10 +1,10 @@
 
 import React, { useRef } from 'react'
 import { useGLTF} from '@react-three/drei'
-
+import model from "./../../../assets/arrow.glb"
 const Arrow=()=> {
   const group = useRef()
-  const { nodes, materials } = useGLTF('/arrow.glb')
+  const { nodes, materials } = useGLTF(model)
  
   return (
     <group ref={group}  dispose={null}>
@@ -18,5 +18,5 @@ const Arrow=()=> {
   )
 }
 
-useGLTF.preload('/arrow.glb')
+useGLTF.preload(model)
 export default Arrow
