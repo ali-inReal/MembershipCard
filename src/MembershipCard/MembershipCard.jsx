@@ -6,7 +6,7 @@ import { lazy } from 'react';
 import { Suspense } from 'react';
 import animation from "./../assets/animation.json"
 import Lottie from "lottie-react"
-export const MembershipCard = ({ width = "100%", height = "100%", profileImage, memberRank, joinDate, memberName, textColor, bodyColor, memberId, location, actOfKindness, rotation, showBackSide, backgroundVideo, rankColor, QRcode }) => {
+export const MembershipCard = ({ width = "100%", height = "100%", logo,profileImage, memberRank, joinDate, memberName, textColor, bodyColor, memberId, location, actOfKindness, rotation, showBackSide, backgroundVideo, rankColor, QRcode }) => {
 
   const [numLights] = useState(4);
   const radius = 30;
@@ -43,7 +43,7 @@ export const MembershipCard = ({ width = "100%", height = "100%", profileImage, 
           {positions1.map((position, i) => (
             <pointLight key={i} position={position} />
           ))}
-          <LazyModel QRcode={QRcode} textColor={textColor} rotation={rotation} rankColor={rankColor} backgroundVideo={backgroundVideo} showBackSide={showBackSide} bodyColor={bodyColor} joinDate={joinDate} memberName={memberName} location={location} memberId={memberId} memberRank={memberRank} profileImage={profileImage} actOfKindness={actOfKindness} />
+          <LazyModel logo={logo} QRcode={QRcode} textColor={textColor} rotation={rotation} rankColor={rankColor} backgroundVideo={backgroundVideo} showBackSide={showBackSide} bodyColor={bodyColor} joinDate={joinDate} memberName={memberName} location={location} memberId={memberId} memberRank={memberRank} profileImage={profileImage} actOfKindness={actOfKindness} />
         </Canvas>
       </Suspense>
     </div>
