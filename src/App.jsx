@@ -12,12 +12,11 @@ function App() {
     { name: '1000', image: 'https://via.placeholder.com/150' },
     { name: '50', image: 'https://via.placeholder.com/150' },
     { name: '50K', image: 'https://via.placeholder.com/150' },
-    { name: '1K', image: 'https://via.placeholder.com/150' },
+    // { name: '1K', image: 'https://via.placeholder.com/150' },
     { name: '2K', image: 'https://via.placeholder.com/150' },
     { name: '100', image: 'https://via.placeholder.com/150' },
     { name: '1K', image: 'https://via.placeholder.com/150' },
-    { name: '1M', image: 'https://via.placeholder.com/150' },
-    { name: '10', image: 'https://via.placeholder.com/150' },
+    { name: '1M', image: 'https://via.placeholder.com/150' }
   ]
   return (
     <div style={{width:"50vw",height:"50vh", display: "flex",alignItems:"center",justifyContent:"center" }}>

@@ -29,7 +29,7 @@ export function Spinner(props) {
       </group>
       <mesh material-metalness={1}  geometry={nodes.outerRingOfLight.geometry} material={materials.innerRing} rotation={[Math.PI / 2, 0, 0]} />
       <mesh material-color={[1.831,1.831,1.831]} material-toneMapped={false} geometry={nodes.gemPlaceholder.geometry}  material={materials.gemPlaceholder} position={[0, 3.2, 0.33]} rotation={[Math.PI / 2, 0, 0]} scale={0.2} />
-      <mesh geometry={nodes.Plane.geometry} material={materials.gemPlaceholder} position={[0, 3.19, 0.34]} rotation={[Math.PI / 2, 0, 0]} />
+      <mesh geometry={nodes.Plane.geometry} material={materials.gemPlaceholder} position={[0, 3.0, 0.5]} rotation={[Math.PI / 2, 0, 0]} />
       // prizes here
      
       {/* <mesh material-color={[2,2,0]} material-toneMapped={false} geometry={nodes.gemLight1.geometry} material={materials.gemLight} position={[-0.19, 3.09, 0.36]} scale={0.06} /> */}
