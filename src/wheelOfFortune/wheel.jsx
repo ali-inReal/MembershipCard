@@ -3,7 +3,7 @@ import { useState,useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { useFrame } from '@react-three/fiber';
 import { Html } from '@react-three/drei';
-export const Wheel = () => {
+export const Wheel = ({innerRadius,outterRadius}) => {
     const [selectedItem, setSelectedItem] = useState(null);
     const wheelRef = useRef();
     const items = [
@@ -33,7 +33,7 @@ export const Wheel = () => {
                 <cylinderBufferGeometry args={[20, 20, 5, 64]} />
                 <meshStandardMaterial color="red" />
             </mesh>
-            <Html>
+            {/* <Html>
                 {items.map((item, index) => (
                     <div
                         key={index}
@@ -53,7 +53,7 @@ export const Wheel = () => {
                         <h2>You won: {selectedItem}</h2>
                     </div>
                 )}
-            </Html>
+            </Html> */}
         </>
     );
 }

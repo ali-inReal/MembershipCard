@@ -11,11 +11,14 @@ export const Prize = ({ text,index, image,length }) => {
         //   padding: '1px',
         //   backgroundColor: 'white'   ,
         lineHeight:"50px",
-          fontSize:"10px",
+          color:"white",
+          fontFamily:"sans-serif",
+          fontSize:"9px",
+          fontWeight:"900",
           backgroundColor:"transparent",
           // borderRadius: '5px',
           transform: "translate(0%, 0%) rotate(" + (index * (360 / length)+(index +1)* (360 / length))/2 + "deg)",
-          paddingRight:"140px",
+          paddingRight:"120px",
         }}
       >
         {/* <img src={image}  /> */}

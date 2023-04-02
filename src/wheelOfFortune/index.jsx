@@ -6,14 +6,15 @@ import { Html } from '@react-three/drei'
 import { useThree } from '@react-three/fiber'
 import { useFrame } from '@react-three/fiber'
 import { Prize } from './prize'
-export const WheelOfFortune = ({ segments }) => {
+export const WheelOfFortune = ({ segments,innerRadius,outerRadius,position }) => {
     const ref = useRef(null)
     // const { size, viewport } = useThree();
     const group = useRef(null);
     useFrame(
-        (state,delta)=>{
-             group.current.rotation.z+=delta
-            //  ref.current.rotation.z+=delta
+        (state,delta)=>
+        {
+            group.current.rotation.z+=delta
+            // state.performance.current=0.01
         }
     )
     return (
@@ -25,17 +26,17 @@ export const WheelOfFortune = ({ segments }) => {
                         return (
                             <mesh
                                 visible
-                                position={[0, 0, 0]}
+                                position={position}
                                 rotation={[0, 0, 0]}
                                 castShadow
                                 ref={ref}>
                                 <Html
-                                    position={[0, 0,0]}
+                                    position={[0, 0,0.5]}
                                     distanceFactor={10}
                                     transform
-                                    sprite
-                                    center
-                                    occlude
+                                    // sprite
+                                    // center
+                                    // occlude
                                     material={
                                         <meshBasicMaterial color={"black"} />
                                     }
@@ -43,8 +44,8 @@ export const WheelOfFortune = ({ segments }) => {
                                 >
                                     <Prize index={index} length={segments.length} text={segment.name} image={segment.image} />
                                 </Html>
-                                <ringBufferGeometry args={[1, 3, 32, 2, ((2 * Math.PI) / segments.length) * index, (2 * Math.PI) / segments.length]} />
-                                <meshBasicMaterial attach="material" color={index % 2 == 0 ? "hotpink" : "green"} />
+                                <ringBufferGeometry args={[innerRadius,outerRadius, 32, 2, ((2 * Math.PI) / segments.length) * index, (2 * Math.PI) / segments.length]} />
+                                <meshBasicMaterial toneMapped={false} attach="material" color={index % 2 == 0 ? [1,0,0] : [1,1,0]} />
                             </mesh>
                         )
                     }
