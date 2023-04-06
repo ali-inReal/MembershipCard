@@ -13,6 +13,7 @@
     "@react-three/fiber": "^8.12.0",
     "@react-three/postprocessing": "^2.7.1",
     "@types/three": "^0.149.0",
+    "howler": "^2.2.3",
     "lottie-react": "^2.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

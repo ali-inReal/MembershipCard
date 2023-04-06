@@ -17,7 +17,7 @@ export const Prize = ({ text,index, image,length }) => {
           fontWeight:"900",
           backgroundColor:"transparent",
           // borderRadius: '5px',
-          transform: "translate(0%, 0%) rotate(" + (index * (360 / length)+(index +1)* (360 / length))/2 + "deg)",
+          transform: "translate(0%, 0%) rotate(" +(length%2==0? (index * (360 / length)+(index +1)* (360 / length))/2:(index * (360 / length)+(index)* (360 / length))/2 )+ "deg)",
           paddingRight:"120px",
         }}
       >

@@ -37,7 +37,7 @@ export function Spinner(props) {
       <mesh geometry={nodes.backSide.geometry} material={materials.gemLight} rotation={[Math.PI / 2, 0, 0]} scale={2.72} />
       <mesh material-color={[0.831,0.831,0.831]} geometry={nodes.Center.geometry} material={materials.Center} position={[0, 0, 0.19]} rotation={[Math.PI / 2, 0, 0]} scale={[0.88, 0.38, 0.88]} />
       <mesh geometry={nodes.innerRing.geometry} material={materials.innerRing} position={[0, 0, 0.29]} rotation={[Math.PI / 2, 0, 0]} scale={0.91} />
-      <mesh material-color={[2,2,2]} material-toneMapped={false} geometry={nodes.outerLight1.geometry} material={materials.outerLight} position={[1.6, 2.82, 0.28]} rotation={[-Math.PI / 2, 0.52, -Math.PI]} scale={0.36} />
+      <mesh material-color={[4,0,4]} material-toneMapped={false} geometry={nodes.outerLight1.geometry} material={materials.outerLight} position={[1.6, 2.82, 0.28]} rotation={[-Math.PI / 2, 0.52, -Math.PI]} scale={0.36} />
       <mesh geometry={nodes.outerLight3.geometry} material={materials.outerLight} rotation={[-Math.PI / 2, 1.05, -Math.PI]} scale={0.36} />
       <mesh geometry={nodes.outerLight5.geometry} material={materials.outerLight} rotation={[Math.PI / 2, 1.04, 0]} scale={0.36} />
       <mesh geometry={nodes.outerLight6.geometry} material={materials.outerLight} rotation={[Math.PI / 2, 0, 0]} scale={0.36} />
