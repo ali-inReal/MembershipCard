@@ -6,7 +6,7 @@ import { Spinner } from "./wheelOfFortune/Spinner";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { EffectComposer,SSAO, DepthOfField, Bloom, Noise, Vignette } from '@react-three/postprocessing'
-import { useState } from "react";
+import { useRef, useState } from "react";
 function App() {
   
   const segments = [
@@ -28,7 +28,7 @@ function App() {
       }
       else
       {
-          return index%3==0? [1, 0, 0]:index%3==1?[1, 1, 0]:[1,0,1]
+          return index%3==0? [1, 0, 0]:index%3==1?[1, 0.5, 1]:[1,0,1]
       }
   }
   
@@ -51,8 +51,9 @@ function App() {
     seg[index].color = [1,1,1]
     setSelected(selected+2)
   }
+  const ref = useRef()
   return (
-    <div style={{width:"50vw",height:"50vh", display: "flex",alignItems:"center",justifyContent:"center" }}>
+    <div style={{width:"50vw",height:"50vh", display: "flex",alignItems:"center",justifyContent:"center",flexDirection:"column" }}>
       {/* <MembershipCard logo={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJnbIQgP-0AuA_AmRFKWmB5HHGMESIF6Z7FQ&usqp=CAU"} textColor={""} QRcode={"/qr.png"} rotation={true} width={"700px"} height={"700px"} rankColor={"#38b5de"} backgroundVideo={video} showBackSide={false} joinDate="10 Feb,2002" memberName="Muhammad Ali" location="Lahore" memberId={2} memberRank="Senior" profileImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8MCnvBDf0tSbcF6SmCshL-Fp-1ByLnJK09VPX_SVA&s" actOfKindness="Charity" /> */}
        
        <Canvas >
@@ -62,8 +63,8 @@ function App() {
        {/* <Wheel /> */}
        {/* <WheelOfFortune segments={segments}/> */}
        <directionalLight position={[0, 1, 2]} color="white" />
-       <Spinner/>
-       <WheelOfFortune result={selected} setResult={setResult} segments={seg} innerRadius={1} outerRadius={2.5} position={[0, 0, 0.5]} />
+       <Spinner  />
+       <WheelOfFortune ref={ref} result={selected} setResult={setResult} segments={seg} innerRadius={1} outerRadius={2.5} position={[0, 0, 0.5]} />
        {/* <OrbitControls/> */}
        <EffectComposer >
         <DepthOfField focusDistance={0} focalLength={0.02} bokehScale={5} height={480} />
@@ -74,7 +75,16 @@ function App() {
       </EffectComposer>
 </Canvas>
 
-   
+    <button 
+    style={{
+      padding:"10px",
+      borderRadius:"10px",
+      backgroundColor:"gold",
+      color:"white",
+      border:"none",
+      cursor:"pointer"
+    }}
+    onClick={()=>ref.current.clickHandler()}>Spin</button>
     </div>
   );
 }

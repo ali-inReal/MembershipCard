@@ -9,12 +9,13 @@ import { extend } from '@react-three/fiber';
 import { Selection,Select } from '@react-three/postprocessing';
 import { EffectComposer, DepthOfField, Bloom, Noise, Vignette } from '@react-three/postprocessing'
 import { WheelOfFortune } from '.';
+
 export function Spinner(props) {
   const { nodes, materials } = useGLTF(model)
   const meshRef = useRef();
   
-
-
+  const mat = materials.outerLight
+  
   const wheelRef = useRef(null);
   
   return (
@@ -35,15 +36,17 @@ export function Spinner(props) {
       {/* <mesh material-color={[2,2,0]} material-toneMapped={false} geometry={nodes.gemLight1.geometry} material={materials.gemLight} position={[-0.19, 3.09, 0.36]} scale={0.06} /> */}
       <mesh geometry={nodes.gemLight2.geometry} material={materials.gemLight} position={[0.18, 3.09, 0.36]} scale={0.06} />
       <mesh geometry={nodes.backSide.geometry} material={materials.gemLight} rotation={[Math.PI / 2, 0, 0]} scale={2.72} />
-      <mesh material-color={[0.831,0.831,0.831]} geometry={nodes.Center.geometry} material={materials.Center} position={[0, 0, 0.19]} rotation={[Math.PI / 2, 0, 0]} scale={[0.88, 0.38, 0.88]} />
+      <mesh material-emissive={"red"} geometry={nodes.Center.geometry} material={materials.Center} position={[0, 0, 0.19]} rotation={[Math.PI / 2, 0, 0]} scale={[0.88, 0.38, 0.88]} />
       <mesh geometry={nodes.innerRing.geometry} material={materials.innerRing} position={[0, 0, 0.29]} rotation={[Math.PI / 2, 0, 0]} scale={0.91} />
-      <mesh material-color={[4,0,4]} material-toneMapped={false} geometry={nodes.outerLight1.geometry} material={materials.outerLight} position={[1.6, 2.82, 0.28]} rotation={[-Math.PI / 2, 0.52, -Math.PI]} scale={0.36} />
+      <mesh material-emissive={"white"} material-toneMapped={false} geometry={nodes.outerLight1.geometry} material={materials.outerLight} position={[1.6, 2.82, 0.28]} rotation={[-Math.PI / 2, 0.52, -Math.PI]} scale={0.36} />
       <mesh geometry={nodes.outerLight3.geometry} material={materials.outerLight} rotation={[-Math.PI / 2, 1.05, -Math.PI]} scale={0.36} />
       <mesh geometry={nodes.outerLight5.geometry} material={materials.outerLight} rotation={[Math.PI / 2, 1.04, 0]} scale={0.36} />
       <mesh geometry={nodes.outerLight6.geometry} material={materials.outerLight} rotation={[Math.PI / 2, 0, 0]} scale={0.36} />
       <mesh geometry={nodes.outerLight2.geometry} material={materials.outerLight} rotation={[1.57, 1.57, 0]} scale={0.36} />
       <mesh geometry={nodes.outerLight4.geometry} material={materials.outerLight} rotation={[Math.PI / 2, 0.52, 0]} scale={0.36} />
-      <mesh geometry={nodes.outerRing.geometry} material={materials.outerLight} position={[0, 0, 0.29]} rotation={[Math.PI / 2, 0, 0]} scale={2.91} />
+      <mesh  material={mat}  geometry={nodes.outerRing.geometry} position={[0, 0, 0.29]} rotation={[Math.PI / 2, 0, 0]} scale={2.91} >
+      
+      </mesh>
       <mesh geometry={nodes.Sphere023.geometry} material={materials.stone} position={[0, 3.2, 0.33]} rotation={[Math.PI / 2, 0, 0]} scale={0.21} />
       <mesh  geometry={nodes.gemAtTop001.geometry}  position={[0.01, 3.2, 0.36]} rotation={[Math.PI / 2, 0, 0]} scale={0.19} >
        <meshBasicMaterial color={[4,0,0]} toneMapped={false} />

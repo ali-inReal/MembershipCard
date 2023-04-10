@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useImperativeHandle, useState } from 'react'
 import { useRef } from "react"
 import { Html } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
@@ -6,12 +6,35 @@ import { Prize } from './prize'
 import wheelSound from "./../assets/sound.mp3"
 import { Howl } from 'howler'
 import win from "././../assets/win.mp3"
-export const WheelOfFortune = ({ segments, innerRadius, outerRadius, position,result,setResult }) => {
+import { forwardRef } from 'react'
+export const WheelOfFortune = forwardRef(({ segments, innerRadius, outerRadius, position,result,setResult },ref) => {
     var initialRotationSpeed = 0.6;
     var minimumRotationSpeed = 0.01;
     const rings = useRef([])
     const [sound,setSound]=useState(null);
     const [winSound,setWinSound]=useState(null)
+    useImperativeHandle(ref,()=>({
+         clickHandler() {
+            // sound.play()
+            
+            // sound.play()
+            var randomAngle = (Math.random() * (2 * Math.PI) * 10)
+            var finalAngle = Math.round((randomAngle) / (2 * Math.PI / segments.length)) * (2 * Math.PI / segments.length);
+            group.current.rotation.z = 0;
+            finalAngle = finalAngle + 10 * Math.PI + (0.174/2)
+            console.log(finalAngle)
+            setTargetAngle(finalAngle)
+            setCurrentAngle(group.current.rotation.z)
+            setIsSpinning(true)
+            
+            const index = Math.floor((finalAngle / (2 * Math.PI / segments.length) + 2)) % segments.length
+            // console.log(rings.current[index])
+            console.log(segments[index].name)
+          
+            
+            
+        }
+    }))
     useEffect(
         ()=>{
             const winSound = new Howl(
@@ -105,33 +128,7 @@ export const WheelOfFortune = ({ segments, innerRadius, outerRadius, position,re
     
 
     const music_player = useRef();
-    function clickHandler() {
-        // sound.play()
-        
-        // sound.play()
-        var randomAngle = (Math.random() * (2 * Math.PI) * 10)
-        var finalAngle = Math.round((randomAngle) / (2 * Math.PI / segments.length)) * (2 * Math.PI / segments.length);
-        group.current.rotation.z = 0;
-        finalAngle = finalAngle + 10 * Math.PI + (0.174/2)
-        console.log(finalAngle)
-        setTargetAngle(finalAngle)
-        setCurrentAngle(group.current.rotation.z)
-        setIsSpinning(true)
-        
-        const index = Math.floor((finalAngle / (2 * Math.PI / segments.length) + 2)) % segments.length
-        // console.log(rings.current[index])
-        console.log(segments[index].name)
-        // console.log(index)
-        // setTimeout(
-        //     ()=>{
-        //         setResult(index)
-        //         console.log("GLow!!!!")
-        //         setIsSpinning(false)
-        //     },2000
-        // )
-        
-        
-    }
+   
   
     return (
 
@@ -146,7 +143,7 @@ export const WheelOfFortune = ({ segments, innerRadius, outerRadius, position,re
                                 position={position}
                                 rotation={[0, 0, 0]}
                                 castShadow
-                                onClick={() => clickHandler()}
+                                // onClick={() => clickHandler()}
                             >
                                 <Html
                                     position={[0, 0, 0.5]}
@@ -172,3 +169,4 @@ export const WheelOfFortune = ({ segments, innerRadius, outerRadius, position,re
 
     )
 }
+)
