@@ -7,7 +7,7 @@ import wheelSound from "./../assets/sound.mp3"
 import { Howl } from 'howler'
 import win from "././../assets/win.mp3"
 import { forwardRef } from 'react'
-export const WheelOfFortune = forwardRef(({ segments, innerRadius, outerRadius, position,result,setResult },ref) => {
+export const WheelOfFortune = forwardRef(({soundOn,spinTime,textOrientation,textSize,segments, innerRadius, outerRadius, position,result,setResult },ref) => {
     var initialRotationSpeed = 0.6;
     var minimumRotationSpeed = 0.01;
     const rings = useRef([])
@@ -18,16 +18,18 @@ export const WheelOfFortune = forwardRef(({ segments, innerRadius, outerRadius, 
             // sound.play()
             
             // sound.play()
-            var randomAngle = (Math.random() * (2 * Math.PI) * 10)
+            
+            setIsSpinning(true)
+            var randomAngle = (Math.random() * (2 * Math.PI) * spinTime)
             var finalAngle = Math.round((randomAngle) / (2 * Math.PI / segments.length)) * (2 * Math.PI / segments.length);
             group.current.rotation.z = 0;
             finalAngle = finalAngle + 10 * Math.PI + (0.174/2)
             console.log(finalAngle)
             setTargetAngle(finalAngle)
             setCurrentAngle(group.current.rotation.z)
-            setIsSpinning(true)
+         
             
-            const index = Math.floor((finalAngle / (2 * Math.PI / segments.length) + 2)) % segments.length
+            const index = Math.floor((finalAngle / (2 * Math.PI / segments.length) + (segments.length>10?3:2))) % segments.length
             // console.log(rings.current[index])
             console.log(segments[index].name)
           
@@ -89,12 +91,7 @@ export const WheelOfFortune = forwardRef(({ segments, innerRadius, outerRadius, 
             // sound.stop();
             // console.log("paused!")
             setIsSpinning(false)
-            // console.log(isSpinning)
-            
-            // if(isSpinning)
-            // {
-            //     sound.fade(1000,0,3000)
-            // }
+        
           
         }
 
@@ -109,19 +106,20 @@ export const WheelOfFortune = forwardRef(({ segments, innerRadius, outerRadius, 
     useEffect(
         ()=>{
             if(sound!=null)
-            {if(isSpinning)
+            {if(isSpinning && soundOn)
             {
                 sound.play()
                 
             }
             else
             {
-                sound.on('stop',function (){
+                if(soundOn)
+                {sound.on('stop',function (){
                     winSound.play()
                 })
                 sound.stop()
                 
-                console.log("paused")
+                console.log("paused")}
             }}
         },[isSpinning]
     )
@@ -132,7 +130,7 @@ export const WheelOfFortune = forwardRef(({ segments, innerRadius, outerRadius, 
   
     return (
 
-        <group ref={group}>
+        <group  ref={group}>
             {
                 segments.map(
                     (segment, index) => {
@@ -154,10 +152,10 @@ export const WheelOfFortune = forwardRef(({ segments, innerRadius, outerRadius, 
                                     }
                                 >
                                  
-                                    <Prize index={index} length={segments.length} text={segment.name} image={segment.image} />
+                                    <Prize index={index} textOrientation={textOrientation} textSize={textSize} length={segments.length} text={segment.name} image={segment.image} />
                                 </Html>
                                 <ringBufferGeometry  args={[innerRadius, outerRadius, 32, 2, ((2 * Math.PI) / segments.length) * index, (2 * Math.PI) / segments.length]} />
-                                <meshBasicMaterial  toneMapped={false} name={segment.name} attach="material" color={segment.color} />
+                                <meshBasicMaterial  toneMapped={false} name={segment.name} attach="material" emissiveIntensity={2} color={segment.color} />
                             </mesh>
                         )
                     }
